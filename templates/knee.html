@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>근골격계 예방 자세</title>
+    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500&family=Noto+Serif+KR:wght@400;500&display=swap"
+        rel="stylesheet"> <!--폰트-->
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="layoutProfile">
+        <div id="layoutProfile_content">
+            <main>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6">
+                            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                <div class="card-header">
+                                    <h3 class="text-center font-weight-light my-4">무릎 부위 분석</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div style="text-align: center; margin-bottom: 50px;">
+                                        <h4 style="font-size: 18px;">오른쪽 무릎</h4>
+                                        <div style="text-align: center;">
+                                            <h5 style="font-size: 16px;">{{ rk | safe }}</h5>
+                                        </div>
+                                    </div>
+                                    <div style="text-align: center; margin-bottom: 10px;">
+                                        <h4 style="font-size: 18px;">왼쪽 무릎</h4>
+                                        <div style="text-align: center;">
+                                            <h5 style="font-size: 16px;">{{ lk | safe }}</h5>
+                                        </div>
+                                    </div>
+                                    <div class="mt-4">
+                                        <h5 class="text-center"></h5>
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <img src="{{ url_for('static', filename='assets/img/2.jpg') }}"
+                                                    alt="Safe Posture 1">
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="card-footer text-center py-3">
+                                    <a class="btn btn-primary" href="{{ url_for('start', name='index.html') }}">뒤로가기</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+        <div id="layoutProfile_footer">
+            <footer class="py-4 bg-light mt-auto">
+                <div class="container-fluid px-4">
+                    <div class="d-flex align-items-center justify-content-between small">
+                        <div class="text-muted">디지털스마트부산 아카데미 3기</div>
+                        <div>
+                            <a href="{{ url_for('start', name='private.html') }}">개인정보 처리방침</a>
+                            &middot;
+                            <a href="{{ url_for('start', name='termsuse.html') }}">이용약관</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</body>
+
+</html>

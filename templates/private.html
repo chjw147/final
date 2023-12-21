@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>개인정보 처리방침</title>
+    <!-- 추가된부분-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet" /> <!-- 수정부분-->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <!--폰트-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500&family=Noto+Serif+KR:wght@400;500&display=swap" rel="stylesheet">      <!--폰트-->
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- 수정부분-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Player</title>
+    <!--수정부분-->
+    <!-- 수정부분-->
+    <style>
+    body {
+        font-family: 'Noto Sans KR', sans-serif;
+    }
+    
+    .sb-topnav.navbar.bg-dark {
+        background-color: #232d3f !important;
+    }
+
+    .sb-topnav.navbar .navbar-brand {
+        color: white !important;
+    }
+
+    .sb-topnav.navbar .navbar-toggler-icon {
+        background-color: white !important;
+    }
+    
+    .sb-sidenav {
+        background-color: #232d3f !important; /* Set your desired background color */
+    }
+
+    .sb-sidenav-footer {
+        background-color: #232d3f !important;
+    }
+    
+    </style>
+    <!-- 추가된 부분 -->
+</head>
+<body class="sb-nav-fixed">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <!-- Navbar Brand-->
+        <a class="navbar-brand ps-3" href="{{ url_for('start', name='index.html') }}">디지털스마트부산 아카데미</a>
+        <!-- Sidebar Toggle-->
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+        <!-- Navbar Search-->
+        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+        </form>
+        <!-- Navbar-->
+        <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+            <li class="nav-item dropdown">
+                {% if 'loggedin' in session and session['loggedin'] %}
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{{ url_for('start', name='profile.html') }}">마이페이지</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('start', name='tables.html') }}">이전기록 분석</a></li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li><a class="dropdown-item" href="{{ url_for('logout') }}">로그아웃</a></li>
+                    </ul>
+                {% else %}
+                    <a class="nav-link" href="{{ url_for('login') }}">로그인</a>
+                {% endif %}
+            </li>
+        </ul>
+    </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <div class="sb-sidenav-menu-heading">Core</div>
+                        <a class="nav-link" href="{{ url_for('start', name='index.html') }}">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            근골격계 자세 개선
+                        </a>
+                        <div class="sb-sidenav-menu-heading"></div>
+                        <a class="nav-link" href="{{ url_for('start', name='upload.html') }}">
+                            <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                            업로드
+                        </a>
+                        <a class="nav-link" href="{{ url_for('start', name='image.html') }}">
+                            <div class="sb-nav-link-icon"><i class="fas fa-image"></i></div>
+                            이미지
+                        </a>
+                        {% if 'loggedin' in session and session['loggedin'] %}
+                        <!-- 로그인 상태인 경우에만 이전 기록 분석 링크를 보여줌 -->
+                        <a class="nav-link" href="{{ url_for('start', name='tables.html') }}">
+                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                            이전 기록 분석
+                        </a>
+                        {% endif %}
+                        <a class="nav-link" href="{{ url_for('start', name='point.html') }}">
+                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                            참고자료
+                        </a>
+                    </div>
+                </div>
+                <div class="sb-sidenav-footer">
+                    <div class="small">Logged in as:</div>
+                    {{ session['username'] }}
+                </div>
+            </nav>
+        </div>
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid px-4">
+                    <h1 class="mt-4">개인정보 처리방침</h1>
+                    <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item active"></li>
+                    </ol>
+                    <!-- 수정된 부분 -->
+                    <div class="alert alert-primary" role="alert">
+                        <h4 class="alert-heading">개인정보 처리방침 안내</h4>
+                        <p>
+                            본 사이트는 사용자의 개인정보를 존중하며, 관련 법규 및 규정을 준수합니다.
+                            아래는 개인정보 처리방침에 대한 주요 내용입니다.
+                        </p>
+                        <ul>
+                            <li><strong>1. 수집하는 개인정보 항목</strong></li>
+                            <p>
+                                본 서비스에서는 회원 가입, 서비스 이용과정에서 아래와 같은 개인정보를 수집할 수 있습니다.
+                                수집항목은 다음과 같습니다.
+                                <br>
+                                - 필수항목: [비밀번호, 이메일 주소, 성명]
+                                <br>
+                            </p>
+                            <li><strong>2. 개인정보의 수집 및 이용 목적</strong></li>
+                            <p>
+                                본 서비스는 다음과 같은 목적으로 개인정보를 수집하고 있습니다.
+                                <br>
+                                - 회원 가입 및 관리
+                                <br>
+                                - 서비스 제공 및 운영
+                                <br>
+                                - 이용자에게 권리, 의무 및 책임을 알리기 위한 고지
+                            </p>
+                        </ul>
+                    </div>
+                </div>
+            </main>
+            <footer class="py-4 bg-light mt-auto">
+                <div class="container-fluid px-5">
+                    <div class="d-flex align-items-center justify-content-between small">
+                        <div class="text-muted">디지털스마트부산 아카데미 3기</div>
+                        <div>
+                            <a href="{{ url_for('start', name='private.html') }}">개인정보 처리방침</a>
+                            &middot;
+                            <a href="{{ url_for('start', name='termsuse.html') }}">이용약관</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <!-- 추가된 부분 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+    <!-- 추가된 부분 -->
+</body>
+</html>
